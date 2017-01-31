@@ -100,12 +100,13 @@ class MainHandler(webapp2.RequestHandler):
             error_check = True
         else:
             user_pw_error = ""
-        if user_pw != user_verify_pw and (not user_pw or not user_verify_pw):
+        if user_pw != user_verify_pw or (not user_pw or not user_verify_pw):
             verify_pw_error = "Passwords do not match"
             error_check = True
         else:
             verify_pw_error = ""
         if user_email != "" and not fnmatch.fnmatch(user_email, email_check):
+        # if user_email != "" and not email_check.match(str(user_email)):
             verify_email_error = "Invalid email address"
             error_check = True
         else:
